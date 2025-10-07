@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TULIPS FLORIST</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link rel="icon" href="c:\Users\aldri\Downloads\552025870_17844394581575711_781471540986066878_n (1).jpg" type="image/png">
+<style>
+    body {
+        font-family: "Poppins", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        color: #000;
+    }
+
+    header {
+        background-color: #000;
+        color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 2.2rem;
+    }
+
+    p {
+        margin: 10px 0 0;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        padding: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .product {
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        background-color: #fafafa;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 10px;
+        background-color: #eee;
+        margin-bottom: 15px;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+
+    .price {
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #444;
+    }
+
+    #cart {
+        padding: 40px;
+        border-top: 2px solid #000;
+        max-width: 800px;
+        margin: 40px auto;
+        background: #f9f9f9;
+        border-radius: 10px;
+    }
+
+    #cart h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #cart-items {
+        list-style: none;
+        padding: 0;
+    }
+
+    #cart-items li {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background: #fff;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    #contact {
+        text-align: center;
+        padding: 50px 20px;
+        border-top: 2px solid #000;
+    }
+
+    #contact a {
+        display: inline-block;
+        padding: 12px 25px;
+        background: #000;
+        color: #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    #contact a:hover {
+        background: #444;
+    }
+
+    /* Flash and scale animation for cart total */
+@keyframes flash {
+    0% { background-color: #fff; transform: scale(1); }
+    25% { background-color: #d4edda; transform: scale(1.3); }
+    50% { background-color: #a8e6a3; transform: scale(1.5); }
+    75% { background-color: #d4edda; transform: scale(1.3); }
+    100% { background-color: #fff; transform: scale(1); }
+}
+
+.flash {
+    animation: flash 0.6s ease;
+}
+
+
+</style>
+</head>
+<body>
+<header>
+    <h1>TULIPS FLORIST</h1>
+    <p>-MAKES RITUALS MORE RADIANT-</p>
+</header>
+
+<section class="products">
+    <div class="product"><img src="c:\Users\aldri\Downloads\boque.jpg" alt="Bouquets"><h3>Bouquets</h3><span class="price">₹4000</span><div class="buttons"><button onclick="addToCart('Bouquets',4000)">Add to Cart</button><button onclick="contactWhatsApp('Bouquets')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Wedding Garlands"><h3>Wedding Garlands</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Wedding Garlands',0)">Add to Cart</button><button onclick="contactWhatsApp('Wedding Garlands')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Manthrakodi Hangers"><h3>Manthrakodi Hangers</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Manthrakodi Hangers',0)">Add to Cart</button><button onclick="contactWhatsApp('Manthrakodi Hangers')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="c:\Users\aldri\Downloads\mathrakodi tray.jpg" alt="Manthrakodi Tray"><h3>Manthrakodi Tray</h3><span class="price">₹2000</span><div class="buttons"><button onclick="addToCart('Manthrakodi Tray',2000)">Add to Cart</button><button onclick="contactWhatsApp('Manthrakodi Tray')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Manthrakodi Box"><h3>Manthrakodi Box</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Manthrakodi Box',0)">Add to Cart</button><button onclick="contactWhatsApp('Manthrakodi Box')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Manthrakodi Basket"><h3>Manthrakodi Basket</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Manthrakodi Basket',0)">Add to Cart</button><button onclick="contactWhatsApp('Manthrakodi Basket')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Ring Box"><h3>Ring Box</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Ring Box',0)">Add to Cart</button><button onclick="contactWhatsApp('Ring Box')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Welcoming Candles"><h3>Welcoming Candles</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Welcoming Candles',0)">Add to Cart</button><button onclick="contactWhatsApp('Welcoming Candles')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Bridesmaid's Floral Accessories"><h3>Bridesmaid's Floral Accessories</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Bridesmaid\'s Floral Accessories',0)">Add to Cart</button><button onclick="contactWhatsApp('Bridesmaid\'s Floral Accessories')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="c:\Users\aldri\Downloads\bottonier.jpg" alt="Boutonniers"><h3>Boutonniers</h3><span class="price">₹200</span><div class="buttons"><button onclick="addToCart('Boutonniers',200)">Add to Cart</button><button onclick="contactWhatsApp('Boutonniers')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Pocket squares"><h3>Pocket squares</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Pocket squares',0)">Add to Cart</button><button onclick="contactWhatsApp('Pocket squares')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Floral Hoops"><h3>Floral Hoops</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Floral Hoops',0)">Add to Cart</button><button onclick="contactWhatsApp('Floral Hoops')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Holy Communion Candles"><h3>Holy Communion Candles</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Holy Communion Candles',0)">Add to Cart</button><button onclick="contactWhatsApp('Holy Communion Candles')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Tiaras"><h3>Tiaras</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Tiaras',0)">Add to Cart</button><button onclick="contactWhatsApp('Tiaras')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="c:\Users\aldri\Downloads\553591935_1578998323290885_5912940389668069587_n.jpg" alt="Baptism candles"><h3>Baptism candles</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Baptism candles',0)">Add to Cart</button><button onclick="contactWhatsApp('Baptism candles')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Baptism Box"><h3>Baptism Box</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Baptism Box',0)">Add to Cart</button><button onclick="contactWhatsApp('Baptism Box')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="replaceimagehere" alt="Baptism Baskets"><h3>Baptism Baskets</h3><span class="price">₹0</span><div class="buttons"><button onclick="addToCart('Baptism Baskets',0)">Add to Cart</button><button onclick="contactWhatsApp('Baptism Baskets')">WhatsApp</button></div></div>
+
+    <div class="product"><img src="c:\Users\aldri\Downloads\Chocolate Hamper.jpeg" alt="Hampers"><h3>Hampers</h3><span class="price">₹2000</span><div class="buttons"><button onclick="addToCart('Hampers',2000)">Add to Cart</button><button onclick="contactWhatsApp('Hampers')">WhatsApp</button></div></div>
+</section>
+
+<section id="cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p style="text-align:center;">Total: ₹<span id="total">0</span></p>
+</section>
+
+<section id="contact">
+    <h2>Contact to Order</h2>
+    <p><a href="https://wa.me/917510911284" target="_blank">Order on WhatsApp</a></p>
+</section>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    updateCart();
+
+    // Confetti effect
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+}
+
+
+function updateCart() {
+    const list = document.getElementById('cart-items');
+    const totalEl = document.getElementById('total');
+    list.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, i) => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${i})">Remove</button>`;
+        list.appendChild(li);
+    });
+    totalEl.textContent = total;
+
+    // Flash animation
+    totalEl.classList.remove('flash'); 
+    void totalEl.offsetWidth; 
+    totalEl.classList.add('flash');
+}
+
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function contactWhatsApp(product) {
+    const num = '917510911284'; // Replace with real WhatsApp number
+    const msg = encodeURIComponent(`Hi, I would like to order: ${product}`);
+    window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+}
+</script>
+</body>
+</html>
