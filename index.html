@@ -227,17 +227,11 @@
 let cart = [];
 
 function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push({name, price});
-    updateCart();
-
-    // Confetti effect
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-    });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    confettiEffect(); // if you added confetti earlier
 }
-
 
 function updateCart() {
     const list = document.getElementById('cart-items');
@@ -272,4 +266,5 @@ function contactWhatsApp(product) {
 </script>
 </body>
 </html>
+
 
