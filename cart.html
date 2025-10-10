@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart - Tulips Florist</title>
+<style>
+body {
+    font-family: "Poppins", sans-serif;
+    background: #fafafa;
+    padding: 40px;
+    color: #000;
+}
+h1 {
+    text-align: center;
+}
+#cart-items {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 20px auto;
+}
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+button:hover {
+    background: #444;
+}
+a {
+    display: inline-block;
+    margin-top: 20px;
+    background: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+a:hover {
+    background: #444;
+}
+</style>
+</head>
+<body>
+<h1>Your Cart</h1>
+<ul id="cart-items"></ul>
+<p style="text-align:center;">Total: ₹<span id="total">0</span></p>
+<div style="text-align:center;">
+    <a href="#" id="whatsappOrder">Order on WhatsApp</a>
+    <br>
+    <a href="index.html">← Back to Shop</a>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function renderCart() {
+    const list = document.getElementById('cart-items');
+    const totalEl = document.getElementById('total');
+    list.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, i) => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeItem(${i})">Remove</button>`;
+        list.appendChild(li);
+    });
+    totalEl.textContent = total;
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+document.getElementById('whatsappOrder').addEventListener('click', () => {
+    const num = 'YOURNUMBER'; // replace with your WhatsApp number
+    const items = cart.map(item => `${item.name} - ₹${item.price}`).join('%0A');
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const msg = `Hi! I'd like to order:%0A${items}%0A%0ATotal: ₹${total}`;
+    window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+});
+
+renderCart();
+</script>
+</body>
+</html>
